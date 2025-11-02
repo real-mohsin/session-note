@@ -1,73 +1,75 @@
-# React + TypeScript + Vite
+# 🧠 Therapy Session Quick Notes
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, minimalistic web app for therapists to record and manage their session notes efficiently.  
+Built with **React + TypeScript + Material UI + Supabase (Database + Edge Functions)**.
 
-Currently, two official plugins are available:
+![React](https://img.shields.io/badge/React-18.0-blue?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript)
+![MaterialUI](https://img.shields.io/badge/Material_UI-5.0-blue?logo=mui)
+![Supabase](https://img.shields.io/badge/Supabase-Backend-success?logo=supabase)
+![License](https://img.shields.io/badge/license-MIT-green)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🌟 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 📝 Add session notes with:
+  - Client name  
+  - Session date  
+  - Quick notes (up to 500 chars)  
+  - Duration (validated by Supabase Edge Function)
+- 📋 View and manage all notes (sorted by session date)
+- 🗑️ Delete notes with confirmation dialog
+- ☁️ Supabase-powered real-time storage
+- ⚡ Built with Vite for fast local development
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🧰 Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+| Layer | Technology |
+|-------|-------------|
+| Frontend | React (Vite) + TypeScript |
+| UI | Material UI (MUI) |
+| Backend | Supabase Database + Edge Function (Deno) |
+| Data Handling | Supabase JS Client |
+| Validation | Supabase Edge Function for Duration Check |
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📁 Project Structure
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+session-notes/
+├── src/
+│ ├── components/
+│ │ ├── NoteForm.tsx # Add new notes
+│ │ └── NoteList.tsx # List and delete notes
+│ ├── hooks/
+│ │ └── useSessionNotes.ts # Custom hook for Supabase CRUD
+│ ├── lib/
+│ │ └── supabaseClient.ts # Supabase initialization
+│ ├── App.tsx # Main app
+│ └── main.tsx # Entry point
+│
+├── supabase/
+│ └── functions/
+│ └── validate-session-note/
+│ └── index.ts # Edge Function for validation
+│
+├── .env
+├── package.json
+├── tsconfig.json
+└── README.md
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+## ⚙️ Setup Instructions
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/session-notes.git
+cd session-notes
+
+npm install
